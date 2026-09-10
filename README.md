@@ -109,12 +109,12 @@ After building the library, include the generated UMD bundle directly from a bui
 ```html
 <script src="./dist/plate-calculator.umd.js"></script>
 <script>
-  const result = window.plateCalculator.calculate(225);
+  const result = plateCalculator.calculate(225);
   console.log(result);
 </script>
 ```
 
-The generated UMD bundle exposes `window.plateCalculator`.
+The generated UMD bundle exposes a global named `plateCalculator`.
 
 ## Local demo
 
