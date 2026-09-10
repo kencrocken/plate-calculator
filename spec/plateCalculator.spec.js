@@ -101,6 +101,14 @@ describe('plateCalculator', () => {
 			expect(set).toEqual([10, 5]);
 		});
 
+
+		it('throws a barbell-specific error when the target is below the bar weight', () => {
+			expect(() => {
+				plateCalculator.calculate(40, { returnClosest : false });
+			})
+				.toThrowError('Target weight 40 is below the barbell weight of 45.');
+		});
+
 		it('throws an error when returnClosest is off and weight requested is impossible', () => {
 			expect(() => {
 				plateCalculator.calculate(46, { returnClosest : false });

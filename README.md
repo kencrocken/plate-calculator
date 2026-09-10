@@ -116,6 +116,15 @@ After building the library, include the generated UMD bundle directly from a bui
 
 The generated UMD bundle exposes a global named `plateCalculator`.
 
+For a published package or CDN-hosted usage, load the same artifact by versioned URL:
+
+```html
+<script src="https://unpkg.com/plate-calculator@1.0.6/dist/plate-calculator.umd.js"></script>
+<script>
+  console.log(plateCalculator.calculate(225));
+</script>
+```
+
 ## Local demo
 
 Run:

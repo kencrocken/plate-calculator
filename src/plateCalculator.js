@@ -67,6 +67,10 @@ const calculate = (targetWeight, opts = {}) => {
 	});
 
 	if (options.returnClosest === false && currentWeight !== +targetWeight) {
+		if (currentWeight > +targetWeight) {
+			throw new Error(`Target weight ${targetWeight} is below the barbell weight of ${options.barbellWeight}.`);
+		}
+
 		throw new Error(`Achieving ${targetWeight} is impossible with current weight set and/or limitations. Closest possible weight is ${currentWeight}`);
 	}
 
