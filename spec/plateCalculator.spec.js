@@ -1,4 +1,4 @@
-import plateCalculator from '../src/index';
+import plateCalculator from '../src/index.js';
 
 describe('plateCalculator', () => {
 
