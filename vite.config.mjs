@@ -8,6 +8,8 @@ export default defineConfig(({ mode }) => {
 	if (mode === 'library') {
 		return {
 			build : {
+				assetsInlineLimit : Number.MAX_SAFE_INTEGER,
+				cssCodeSplit : false,
 				emptyOutDir : true,
 				lib : {
 					entry : resolve(rootDir, 'src/index.js'),

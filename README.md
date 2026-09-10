@@ -26,7 +26,7 @@ A small library that calculates how many plates you need to put on a barbell to 
 npm install plate-calculator
 ```
 
-Published package consumers load the generated files from `dist/`. This repository keeps `dist/` as build output, and the `files` field plus `prepare` script ensure those bundles are included when the package is published.
+Published package consumers install the built artifacts directly from `dist/`. The `files` field controls that published payload, and the `prepare` script ensures the bundles exist before publishing from this repository.
 
 ### Browser bundle
 

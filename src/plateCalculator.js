@@ -3,6 +3,17 @@ const defaultWeightSets = {
 	METRIC : [1.25, 25, 20, 16, 10, 7.5, 5, 2.5],
 };
 
+/**
+ * Calculates how many plates to put on a bar to reach a target weight.
+ * @param {number} targetWeight What you want the bar to weigh.
+ * @param {Object} [opts] Options for the calculation.
+ * @param {Array<number>} [opts.set=defaultWeightSets.POUNDS] Plate weights to use.
+ * @param {number} [opts.barbellWeight=45] Weight of the barbell.
+ * @param {Object} [opts.availablePlates={}] Plate counts keyed by plate weight.
+ * @param {boolean} [opts.returnClosest=true] Whether to return the closest possible weight.
+ * @param {Array<number>} [opts.addedPlates=[]] Extra plate weights to append to the set.
+ * @returns {{plates: Array<{plateWeight: number, qty: number}>, closestWeight: number}}
+ */
 const calculate = (targetWeight, opts = {}) => {
 	const options = Object.assign({
 		set : defaultWeightSets.POUNDS,
@@ -14,7 +25,7 @@ const calculate = (targetWeight, opts = {}) => {
 
 	let currentWeight = options.barbellWeight;
 
-	const plateSet = options.set.concat(options.addedPlates).sort((a, b) => (a - b)).reverse();
+	const plateSet = options.set.concat(options.addedPlates).sort((a, b) => (b - a));
 
 	const result = {
 		plates : [],
