@@ -14,9 +14,7 @@ const calculate = (targetWeight, opts = {}) => {
 
 	let currentWeight = options.barbellWeight;
 
-	options.set = options.set.concat(options.addedPlates);
-
-	options.set.sort((a, b) => (a - b)).reverse();
+	const plateSet = options.set.concat(options.addedPlates).sort((a, b) => (a - b)).reverse();
 
 	const result = {
 		plates : [],
@@ -24,7 +22,7 @@ const calculate = (targetWeight, opts = {}) => {
 
 	const multiplier = 2;
 
-	options.set.forEach((plateWeight) => {
+	plateSet.forEach((plateWeight) => {
 		let limitation = options.availablePlates[plateWeight];
 
 		if (limitation % multiplier) {

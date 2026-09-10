@@ -89,6 +89,18 @@ describe('plateCalculator', () => {
 				]);
 		})
 
+
+		it('does not mutate a custom set when added plates are provided', () => {
+			const set = [10, 5];
+
+			plateCalculator.calculate(65, {
+				set,
+				addedPlates : [2.5],
+			});
+
+			expect(set).toEqual([10, 5]);
+		});
+
 		it('throws an error when returnClosest is off and weight requested is impossible', () => {
 			expect(() => {
 				plateCalculator.calculate(46, { returnClosest : false });

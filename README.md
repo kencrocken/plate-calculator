@@ -40,7 +40,7 @@ import plateCalculator from 'plate-calculator';
 const result = plateCalculator.calculate(225);
 ```
 
-CommonJS consumers can still use:
+CommonJS consumers can still use the package root, which resolves to the generated `dist/plate-calculator.cjs` bundle:
 
 ```js
 const plateCalculator = require('plate-calculator');
