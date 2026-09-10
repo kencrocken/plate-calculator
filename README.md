@@ -104,7 +104,7 @@ addedPlates: [0.5]
 
 ## Browser global usage
 
-After building the library, include the UMD bundle directly:
+After building the library, include the generated UMD bundle directly from a built or published `dist/` folder:
 
 ```html
 <script src="./dist/plate-calculator.umd.js"></script>
