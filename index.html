@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>plate-calculator demo</title>
+	<style>
+		:root {
+			font-family: Arial, sans-serif;
+			line-height: 1.5;
+		}
+
+		body {
+			margin: 0;
+			padding: 2rem;
+			background: #f7f7f7;
+			color: #1f2933;
+		}
+
+		main {
+			max-width: 48rem;
+			margin: 0 auto;
+			background: #fff;
+			padding: 2rem;
+			border-radius: 0.75rem;
+			box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+		}
+
+		form {
+			display: grid;
+			gap: 1rem;
+		}
+
+		label {
+			display: grid;
+			gap: 0.35rem;
+			font-weight: 600;
+		}
+
+		input,
+		textarea,
+		button {
+			font: inherit;
+			padding: 0.65rem 0.75rem;
+		}
+
+		textarea {
+			min-height: 5rem;
+		}
+
+		.checkbox-row {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			font-weight: 600;
+		}
+
+		button {
+			justify-self: start;
+			border: 0;
+			border-radius: 0.5rem;
+			background: #2563eb;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		pre,
+		.output-error {
+			padding: 1rem;
+			border-radius: 0.5rem;
+			background: #111827;
+			color: #f9fafb;
+			overflow: auto;
+		}
+
+		.output-error {
+			background: #7f1d1d;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<h1>plate-calculator</h1>
+		<p>Run the library locally with Vite and try the calculator against source code during development.</p>
+		<form data-demo-form>
+			<label>
+				Target weight
+				<input type="number" name="targetWeight" min="0" step="0.5" value="225">
+			</label>
+			<label>
+				Barbell weight
+				<input type="number" name="barbellWeight" min="0" step="0.5" value="45">
+			</label>
+			<label>
+				Added plates
+				<input type="text" name="addedPlates" value="" placeholder="e.g. 0.5, 1.25">
+			</label>
+			<label>
+				Available plates
+				<textarea name="availablePlates" placeholder="e.g. 45:2, 35:2, 25:2"></textarea>
+			</label>
+			<label class="checkbox-row">
+				<input type="checkbox" name="returnClosest" checked>
+				Return closest weight when an exact match is impossible
+			</label>
+			<button type="submit">Calculate</button>
+		</form>
+		<h2>Result</h2>
+		<pre data-result-output></pre>
+		<p class="output-error" data-error-output></p>
+	</main>
+	<script type="module" src="/demo/main.js"></script>
+</body>
+</html>
