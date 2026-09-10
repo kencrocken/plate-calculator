@@ -2,18 +2,34 @@
   "name": "plate-calculator",
   "version": "1.0.6",
   "description": "Calculates how many weight plates to put on a barbell to get a specific weight with the weights you have available",
-  "main": "dist/plate-calculator.js",
-  "jsnext:main:": "lib/index.js",
+  "main": "./dist/plate-calculator.cjs",
+  "module": "./dist/plate-calculator.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/plate-calculator.mjs",
+      "require": "./dist/plate-calculator.cjs",
+      "default": "./dist/plate-calculator.mjs"
+    }
+  },
+  "unpkg": "./dist/plate-calculator.umd.js",
+  "jsdelivr": "./dist/plate-calculator.umd.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "clean": "rm -r ./dist/*.js",
-    "build": "webpack -p",
-    "start": "webpack-dev-server --config webpack.examples.js --hot --inline",
+    "clean": "node -e \"const fs = require('fs'); fs.rmSync('dist', { recursive: true, force: true }); fs.rmSync('demo-dist', { recursive: true, force: true });\"",
+    "dev": "vite",
+    "start": "npm run dev",
+    "build": "npm run clean && npm run build:lib",
+    "build:lib": "vite build --mode library",
+    "build:demo": "vite build",
+    "preview": "vite preview",
     "test": "jasmine",
     "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/ipalindromi/plate-calculator.git"
+    "url": "git+ssh://git@github.com/kencrocken/plate-calculator.git"
   },
   "keywords": [
     "weightlifting",
@@ -22,13 +38,12 @@
   "author": "Dustin Baldwin <dustin@dustinbaldwin.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ipalindromi/plate-calculator/issues"
+    "url": "https://github.com/kencrocken/plate-calculator/issues"
   },
-  "homepage": "https://github.com/ipalindromi/plate-calculator#readme",
+  "homepage": "https://github.com/kencrocken/plate-calculator#readme",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.3.2",
     "babel-preset-env": "^1.2.0",
     "babel-register": "^6.23.0",
     "eslint": ">=4.18.2",
@@ -36,10 +51,8 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
-    "html-loader": "^0.4.5",
     "jasmine": "^2.5.3",
     "jasmine-core": "^2.5.2",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^3.1.11"
+    "vite": "^8.3.0"
   }
 }

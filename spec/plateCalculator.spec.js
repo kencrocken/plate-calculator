@@ -1,4 +1,4 @@
-import plateCalculator from '../lib/plateCalculator';
+import plateCalculator from '../src/index.js';
 
 describe('plateCalculator', () => {
 
@@ -88,6 +88,26 @@ describe('plateCalculator', () => {
 					{ plateWeight : .5, qty : 2 }
 				]);
 		})
+
+
+		it('does not mutate a custom set when added plates are provided', () => {
+			const set = [10, 5];
+
+			plateCalculator.calculate(65, {
+				set,
+				addedPlates : [2.5],
+			});
+
+			expect(set).toEqual([10, 5]);
+		});
+
+
+		it('throws a barbell-specific error when the target is below the bar weight', () => {
+			expect(() => {
+				plateCalculator.calculate(40, { returnClosest : false });
+			})
+				.toThrowError('Target weight 40 is below the barbell weight of 45.');
+		});
 
 		it('throws an error when returnClosest is off and weight requested is impossible', () => {
 			expect(() => {
