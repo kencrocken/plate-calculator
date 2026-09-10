@@ -26,6 +26,8 @@ A small library that calculates how many plates you need to put on a barbell to 
 npm install plate-calculator
 ```
 
+Published package consumers load the generated files from `dist/`. This repository keeps `dist/` as build output, and the `files` field plus `prepare` script ensure those bundles are included when the package is published.
+
 ### Browser bundle
 
 Run `npm run build`, then include `dist/plate-calculator.umd.js` in your page.
