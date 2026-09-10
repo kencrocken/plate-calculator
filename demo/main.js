@@ -37,24 +37,35 @@ const renderResult = (payload) => {
 	resultOutput.textContent = JSON.stringify(payload, null, 2);
 };
 
+const parseRequiredNumber = (value, fieldName) => {
+	const parsedValue = Number.parseFloat(value);
+
+	if (Number.isNaN(parsedValue)) {
+		throw new Error(`${fieldName} must be a valid number.`);
+	}
+
+	return parsedValue;
+};
+
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
 	errorOutput.textContent = '';
 
 	const formData = new FormData(form);
-	const targetWeight = Number.parseFloat(formData.get('targetWeight'));
-	const barbellWeight = Number.parseFloat(formData.get('barbellWeight'));
 	const addedPlates = parseAddedPlates(formData.get('addedPlates'));
 	const availablePlates = parseAvailablePlates(formData.get('availablePlates'));
 	const returnClosest = formData.get('returnClosest') === 'on';
 
 	try {
-		const result = plateCalculator.calculate(targetWeight, {
-			barbellWeight,
-			addedPlates,
-			availablePlates,
-			returnClosest,
-		});
+		const result = plateCalculator.calculate(
+			parseRequiredNumber(formData.get('targetWeight'), 'Target weight'),
+			{
+				barbellWeight : parseRequiredNumber(formData.get('barbellWeight'), 'Barbell weight'),
+				addedPlates,
+				availablePlates,
+				returnClosest,
+			},
+		);
 
 		renderResult(result);
 	} catch (error) {

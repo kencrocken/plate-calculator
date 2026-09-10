@@ -1,13 +1,16 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-export default defineConfig(() => {
-	if (process.env.BUILD_TARGET === 'lib') {
+const rootDir = dirname(fileURLToPath(import.meta.url));
+
+export default defineConfig(({ mode }) => {
+	if (mode === 'library') {
 		return {
 			build : {
 				emptyOutDir : true,
 				lib : {
-					entry : resolve(__dirname, 'src/index.js'),
+					entry : resolve(rootDir, 'src/index.js'),
 					name : 'plateCalculator',
 					formats : ['es', 'cjs', 'umd'],
 					fileName : (format) => {
@@ -30,6 +33,9 @@ export default defineConfig(() => {
 	}
 
 	return {
+		build : {
+			outDir : 'demo-dist',
+		},
 		server : {
 			open : false,
 		},

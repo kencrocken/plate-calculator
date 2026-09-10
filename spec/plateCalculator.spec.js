@@ -1,4 +1,4 @@
-import plateCalculator from '../lib/plateCalculator';
+import plateCalculator from '../src/index';
 
 describe('plateCalculator', () => {
 
